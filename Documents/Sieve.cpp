@@ -34,11 +34,11 @@ if (p[i])
         p[i*j]=false;
 }
 }
-/*vector <ll> Prime;
+vector <ll> Prime;
 for1(i,2,p.size())
 {
     if (p[i]==1)
         Prime.push_back(i);
-} */
+} 
 return 0;
 }

@@ -37,8 +37,7 @@ ll fast_exp(ll base, ll exp) {
 int main()
 {ll i,j,k,x,y,l,n,m,t,sum1;
 ifstream fin; ofstream fout;
-fin.open("D:\Input.txt");
-fout.open("D:\Output.txt");
+
 
 fin>>n;
 vector <ll> v(n);

@@ -14,44 +14,32 @@
 # define for2(i,k,n)              for(long long i=k;i<=n;i++)
 # define Min(x,y)                   x<y?x:y
 # define Max(x,y)                   x>y?x:y
-
+# define INF (long long int ) 1e15
 # define ALL(x)                  begin(x),end(x)
+
+
+
 using namespace std;
 typedef long long int ll;
-vector <ll> v;
-ll max_x,max_y;
-vector < vector<ll> > tree;
-
-void update(ll x , ll y , ll val){
-	ll y1;
-	while (x <= max_x){
-		y1 = y;
-		while (y1 <= max_y){
-			tree[x][y1] += val;
-			y1 += (y1 & -y1);
-		}
-		x += (x & -x);
-	}
-	ll read (ll x,ll y)
-	{  ll y1=y; ll sum1=0;
-	    while(x>0)
-            while(y>0)
-            {
-                 sum1+=tree[x][y];
-        {  y=y1;
-                y-=(y&-y);
-
-            }
-            x-=(x&-x);
-        }
-        return (sum1);
-	}
-        int main()
+ll gcd (ll a,ll b)
 {
-    ll i,j,k,x,y,l,n,m,t,sum1;
-ifstream fin; ofstream fout;
-fin.open("D:\Input.txt");
-fout.open("D:\Output.txt");
-return 0;
+	ll x,y;
+	x=Max(a,b);
+	y=Min(a,b);
+	if (x%y==0)
+	return y;
+	else
+	gcd (x%y,y);
 }
 
+  int main()
+{
+ #ifndef ONLINE_JUDGE
+    freopen("in.txt", "r", stdin);
+#endif
+    ll i,j,k,x,y,l,n,m,t,sum1;
+cin>>i>>j;
+cout<<gcd(i,j)<<endl;
+
+return 0;
+}
