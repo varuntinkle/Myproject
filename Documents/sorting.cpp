@@ -18,7 +18,6 @@
 # define INF (long long int ) 1e15
 # define ALL(x)                  (begin(x),end(x))
 # define Abs(x)                 (x>=0?x:-x)
-# define MOD                        1000000007
 #ifndef ONLINE_JUDGE //  ifndef checks whether this macro is defined earlier or not
 #define gc getchar //for local PC
 #else
@@ -46,20 +45,24 @@ return ret;
 }
 
 
-ll gcd(ll a,ll b)
+
+
+
+
+
+struct my
 {
-	ll x,y;
-	x=Max(a,b);
-	y=Min(a,b);
-	if (x%y==0)
-	return y;
-	else
-	gcd(b,a%b);
-}
+	ll a;ll b ;ll c;
 
-
-
-
+};
+ 
+ bool mycompare( const tuple<ll,ll,ll> &a, const tuple<ll,ll,ll> &b)
+ {
+ 	if (get<0>(a)!=get<0>(b))
+ 	return get<0>(a)<get<0>(b);
+ else
+ 	return get<1>(a)<get<1>(b);
+ }
 
 
 int main()
@@ -69,8 +72,18 @@ int main()
     freopen("in.txt", "r", stdin);
 #endif
     std::ios_base::sync_with_stdio (false);
-    
-cout<<gcd(14,21)<<endl;
+vector < tuple <ll,ll,ll> > s;
+s.push_back(make_tuple(3,5,5));
+s.push_back(make_tuple(3,4,5));
+s.push_back(make_tuple(5,5,6));
+ 
+ sort(s.begin(),s.end(),mycompare);
+
+ for(i=0;i<s.size();i++)
+ {
+ 	cout<<get<0>(s[i])<<" "<<get<1>(s[i])<<" "<<get<2>(s[i])<<endl;
+ }
+
 
 return 0;
 }

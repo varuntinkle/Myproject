@@ -1,8 +1,17 @@
-public class a
-{
+import java.io.*;
 
-	public static void main(String args[])
+public class untitled
+{
+	public static void main(String args[]) throws IOException
 	{
-		System.out.println("Hello WOrld");
+		InputStreamReader instream = new FileReader("in.txt");
+		BufferedReader in = new BufferedReader(instream);
+		int a,b;
+		a=Integer.parseInt(in.readLine());
+		b=Integer.parseInt(in.readLine());
+		System.out.println(a + b);
+	
+
 	}
+
 }

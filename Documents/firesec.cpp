@@ -46,20 +46,43 @@ return ret;
 }
 
 
-ll gcd(ll a,ll b)
+vector <ll> root;
+vector <ll> size1;
+
+ll parent(ll a)
 {
-	ll x,y;
-	x=Max(a,b);
-	y=Min(a,b);
-	if (x%y==0)
-	return y;
-	else
-	gcd(b,a%b);
+	ll x,y,z;
+	x=a;y=a;z=a;
+	while(root[x]!=x)
+	{
+		x=root[x];
+	}
+  while(y!=x)
+  {
+  	z=y;
+  	y=root[y];
+  	root[z]=x;
+  }
+	return x;
 }
 
-
-
-
+void join(ll a,ll b)
+{
+	ll x,y;
+	x=parent(a); y=parent(b);
+	if (x==y)
+		return;
+	if (size1[x]>=size1[y])
+	{
+		size1[x]+=size1[y];
+		root[y]=x;
+	}
+	else
+	{
+		size1[y]+=size1[x];
+		root[x]=y;
+	}
+}
 
 
 int main()
@@ -69,8 +92,36 @@ int main()
     freopen("in.txt", "r", stdin);
 #endif
     std::ios_base::sync_with_stdio (false);
-    
-cout<<gcd(14,21)<<endl;
+ cin>>t;
+ while(t--)
+ {
+ cin>>n>>m;
+ 	root.clear();
+ 	root.resize(n);
+ 	size1.clear();
+ 	size1.resize(n);
+ 	fill(size1.begin(),size1.end(),1);
+ 	for1(i,0,n)
+ 	root[i]=i;
+ 	for1(i,0,m)
+ 	{
+
+ 			cin>>a>>b;
+ 			--a;--b;
+ 			join(a,b);
+ 		
+ 	}
+ 	ll sum1,sum2;
+ 	sum1=0;sum2=1;
+ 		for1(i,0,n)
+ 		{
+     if (root[i]==i)
+     	{++sum1; sum2*=size1[i];sum2%=MOD; }
+ 		}
+ 		cout<<sum1<<" "<<sum2<<endl;
+ 
+ }   
+
 
 return 0;
 }

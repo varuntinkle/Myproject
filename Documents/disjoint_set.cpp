@@ -18,7 +18,6 @@
 # define INF (long long int ) 1e15
 # define ALL(x)                  (begin(x),end(x))
 # define Abs(x)                 (x>=0?x:-x)
-# define MOD                        1000000007
 #ifndef ONLINE_JUDGE //  ifndef checks whether this macro is defined earlier or not
 #define gc getchar //for local PC
 #else
@@ -44,19 +43,43 @@ c=gc();
 }
 return ret;
 }
+vector <ll> g;
+vector <ll> size1;
 
-
-ll gcd(ll a,ll b)
+ll root (ll p)
 {
-	ll x,y;
-	x=Max(a,b);
-	y=Min(a,b);
-	if (x%y==0)
-	return y;
-	else
-	gcd(b,a%b);
+	ll x,y,z;
+	z=p;y=p;z=p;
+	while(x!=g[x])
+		x=g[x];
+	while(y!=x)
+	{
+		z=y;
+		y=g[y];
+		g[z]=x;
+	}
+	return x;
 }
 
+ void  join (ll a,ll b)
+{
+	ll x,y;
+	x=root(a);
+	y=root(b);
+	if (x==y)
+		return;
+	if (size1[x]>=size1[y])
+	{
+		size1[x]+=size1[y];
+		g[y]=x;
+	}
+	else
+	{
+		size1[y]+=size1[x];
+		g[x]=y;
+	}
+
+}
 
 
 
@@ -69,8 +92,29 @@ int main()
     freopen("in.txt", "r", stdin);
 #endif
     std::ios_base::sync_with_stdio (false);
-    
-cout<<gcd(14,21)<<endl;
+ cin>>n>>m;   
+g.clear();
+size1.clear();
+g.resize(n);
+size1.resize(n);
+for1(i,0,n)
+g[i]=i;
+fill(size1.begin(),size1.end(),1);
+for1(i,0,m)
+{
+	cin>>x>>a>>b;
+if (x==1)
+{
+	if (g[a]==g[b])
+		cout<<"Yes"<<endl;
+	else
+		cout<<"No"<<endl;
+}
+if (x==2)
+{
+	join(a,b);
+}
+}
 
 return 0;
 }
