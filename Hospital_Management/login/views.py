@@ -7,7 +7,18 @@ import django.contrib.auth.hashers
 # Create your views here.
 
 def index(request):
-    return render_to_response('login/login.html')
+    # Request the context of the request.
+    # The context contains information such as the client's machine details, for example.
+    context = RequestContext(request)
+
+    # Construct a dictionary to pass to the template engine as its context.
+    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
+    context_dict = {'boldmessage': "I am bold font from the context"}
+    
+    # Return a rendered response to send to the client.
+    # We make use of the shortcut function to make our lives easier.
+    # Note that the first parameter is the template we wish to use.
+    return render_to_response('login/login.html', context_dict, context)
 
 
 def authenticate (request):
@@ -20,7 +31,7 @@ def authenticate (request):
             Object_Searched = Object_Searched[0]
             if  django.contrib.auth.hashers.check_password(password, Object_Searched.password):
                 Category=Object_Searched.Category
-                message=Category
+                message=Cate
                 return HttpResponse(message)
             else:
                 message = "Wrong Password"
