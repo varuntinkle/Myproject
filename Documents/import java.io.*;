@@ -1,0 +1,13 @@
+import java.io.*;
+
+class untitled
+{
+	public static void main(String args[]) throws IOException
+	{
+		InputStreamReader istream = new InputStreamReader(System.in);
+		BufferedReader buff= new BufferedReader(istream);
+		String s;
+		s=buff.readLine();
+		System.out.println(s);
+	}
+}
