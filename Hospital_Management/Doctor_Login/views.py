@@ -2,14 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def index(request):
+def homepage(request):
     # Request the context of the request.
     # The context contains information such as the client's machine details, for example.
-    context = RequestContext(request)
-
-    # Construct a dictionary to pass to the template engine as its context.
-    # Note the key boldmessage is the same as {{ boldmessage }} in the template!
-    context_dict = {'boldmessage': "I am bold font from the context"}
+  	if not request.session["member_id"]:
+  		logout(request)
     
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
@@ -18,3 +15,11 @@ def index(request):
 
 
 
+
+
+
+
+def logout(request):
+	if request.session["member_id"]:
+		del request.session["member_id"]
+	return HttpResponse("You're logged out.")
